@@ -15,7 +15,7 @@ export default {
     extend: {
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
-        display: ['Nunito', 'sans-serif'],
+        display: ['Comfortaa', 'cursive'],
       },
       colors: {
         border: "hsl(var(--border))",
