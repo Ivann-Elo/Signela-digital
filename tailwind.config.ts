@@ -15,7 +15,7 @@ export default {
     extend: {
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
-        display: ['Comfortaa', 'cursive'],
+        display: ['Varela Round', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
