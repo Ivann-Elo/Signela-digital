@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Menu, X, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import logoBlanc from "@/assets/logo-blanc.png";
 
 const navItems = [
   { label: "Accueil", href: "#hero" },
@@ -23,16 +24,8 @@ export const Header = () => {
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-3">
-            <div className="relative">
-              <div className="w-10 h-10 bg-gradient-primary rounded-lg flex items-center justify-center">
-                <span className="text-primary-foreground font-display font-bold text-xl">S</span>
-              </div>
-            </div>
-            <div className="hidden sm:block">
-              <span className="font-display font-bold text-xl text-foreground">SIGNELA</span>
-              <span className="text-gradient font-display font-bold text-xl ml-1">Digital</span>
-            </div>
+          <a href="#" className="flex items-center">
+            <img src={logoBlanc} alt="Signela Digital" className="h-10 w-auto" />
           </a>
 
           {/* Desktop Navigation */}
