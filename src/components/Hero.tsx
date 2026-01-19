@@ -119,7 +119,7 @@ export const Hero = () => {
                       loop
                       playsInline
                       preload="metadata"
-                      className="w-44 aspect-[9/16] rounded-2xl object-cover flex-shrink-0"
+                      className="w-44 aspect-[9/16] rounded-2xl object-cover flex-shrink-0 opacity-70"
                     />
                   ))}
                 </motion.div>
@@ -143,7 +143,7 @@ export const Hero = () => {
                       loop
                       playsInline
                       preload="metadata"
-                      className="w-44 aspect-[9/16] rounded-2xl object-cover flex-shrink-0"
+                      className="w-44 aspect-[9/16] rounded-2xl object-cover flex-shrink-0 opacity-70"
                     />
                   ))}
                 </motion.div>
@@ -167,7 +167,7 @@ export const Hero = () => {
                       loop
                       playsInline
                       preload="metadata"
-                      className="w-44 aspect-[9/16] rounded-2xl object-cover flex-shrink-0"
+                      className="w-44 aspect-[9/16] rounded-2xl object-cover flex-shrink-0 opacity-70"
                     />
                   ))}
                 </motion.div>
