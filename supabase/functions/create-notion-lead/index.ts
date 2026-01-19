@@ -112,9 +112,8 @@ serve(async (req) => {
     }
 
     if (data.googleBusiness) {
-      // Google Business expects a URL - construct a Google Maps search URL
-      const searchQuery = encodeURIComponent(data.googleBusiness);
-      properties["Google Business"] = { url: `https://www.google.com/maps/search/${searchQuery}` };
+      // Google Business is now directly a URL from the form
+      properties["Google Business"] = { url: data.googleBusiness.startsWith("http") ? data.googleBusiness : `https://${data.googleBusiness}` };
     }
 
     // Create page in Notion
