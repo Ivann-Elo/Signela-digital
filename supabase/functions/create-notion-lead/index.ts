@@ -1,5 +1,5 @@
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
-
+import { Resend } from "https://esm.sh/resend@2.0.0";
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
@@ -137,6 +137,50 @@ serve(async (req) => {
     }
 
     const result = await response.json();
+
+    // Send email notification
+    const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
+    const NOTIFICATION_EMAIL = Deno.env.get("NOTIFICATION_EMAIL");
+
+    if (RESEND_API_KEY && NOTIFICATION_EMAIL) {
+      try {
+        const resend = new Resend(RESEND_API_KEY);
+        const prestationLabel = prestationMapping[data.prestation || ""] || data.prestation || "Non spécifiée";
+        
+        await resend.emails.send({
+          from: "Signela <onboarding@resend.dev>",
+          to: [NOTIFICATION_EMAIL],
+          subject: `🎯 Nouveau lead : ${data.name} - ${data.type}`,
+          html: `
+            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+              <h1 style="color: #6366f1;">Nouveau lead reçu !</h1>
+              <div style="background: #f8fafc; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                <h2 style="margin-top: 0;">Informations</h2>
+                <p><strong>Type :</strong> ${data.type}</p>
+                <p><strong>Nom :</strong> ${data.name}</p>
+                <p><strong>Email :</strong> <a href="mailto:${data.email}">${data.email}</a></p>
+                ${data.phone ? `<p><strong>Téléphone :</strong> <a href="tel:${data.phone}">${data.phone}</a></p>` : ""}
+                <p><strong>Prestation :</strong> ${prestationLabel}</p>
+                ${data.budget ? `<p><strong>Budget :</strong> ${data.budget}</p>` : ""}
+              </div>
+              ${data.message ? `
+              <div style="background: #f8fafc; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                <h2 style="margin-top: 0;">Message</h2>
+                <p>${data.message}</p>
+              </div>
+              ` : ""}
+              <p style="color: #64748b; font-size: 14px;">
+                Ce lead a été automatiquement ajouté à ta base Notion.
+              </p>
+            </div>
+          `,
+        });
+        console.log("Notification email sent successfully");
+      } catch (emailError) {
+        console.error("Failed to send notification email:", emailError);
+        // Don't fail the whole request if email fails
+      }
+    }
 
     return new Response(
       JSON.stringify({ success: true, pageId: result.id }),
