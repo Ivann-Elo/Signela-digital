@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import logoBlanc from "@/assets/logo-blanc.png";
@@ -14,6 +14,31 @@ const navItems = [
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeItem, setActiveItem] = useState("Accueil");
+
+  // Scroll spy effect
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = navItems.map(item => ({
+        label: item.label,
+        element: document.querySelector(item.href) as HTMLElement
+      })).filter(section => section.element);
+
+      const scrollPosition = window.scrollY + 150;
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = sections[i];
+        if (section.element && section.element.offsetTop <= scrollPosition) {
+          setActiveItem(section.label);
+          break;
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial check
+    
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <motion.header
@@ -30,7 +55,7 @@ export const Header = () => {
           </a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-1 px-2 py-2 rounded-full bg-card/80 backdrop-blur-md border border-border/50">
+          <nav className="hidden md:flex items-center gap-1 px-2 py-2 rounded-full bg-card/80 backdrop-blur-md border border-border/50 relative">
             {navItems.map((item) => (
               <a
                 key={item.label}
@@ -40,13 +65,28 @@ export const Header = () => {
                   setActiveItem(item.label);
                   document.querySelector(item.href)?.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
-                  activeItem === item.label
-                    ? "bg-gradient-primary text-primary-foreground shadow-glow"
-                    : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
-                }`}
+                className="relative px-4 py-2 rounded-full text-sm font-medium transition-colors duration-300 z-10"
               >
-                {item.label}
+                {activeItem === item.label && (
+                  <motion.span
+                    layoutId="activeNavBg"
+                    className="absolute inset-0 bg-gradient-primary rounded-full shadow-glow"
+                    initial={{ scale: 0, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{
+                      type: "spring",
+                      stiffness: 380,
+                      damping: 30,
+                    }}
+                  />
+                )}
+                <span className={`relative z-10 transition-colors duration-300 ${
+                  activeItem === item.label
+                    ? "text-primary-foreground"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}>
+                  {item.label}
+                </span>
               </a>
             ))}
           </nav>
@@ -93,7 +133,11 @@ export const Header = () => {
                     setActiveItem(item.label);
                     document.querySelector(item.href)?.scrollIntoView({ behavior: 'smooth' });
                   }}
-                  className="text-muted-foreground hover:text-foreground transition-colors py-2"
+                  className={`transition-colors py-2 ${
+                    activeItem === item.label
+                      ? "text-primary font-medium"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
                 >
                   {item.label}
                 </a>
