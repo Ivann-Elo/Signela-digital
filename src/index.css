@@ -16,9 +16,10 @@
     --popover: 0 0% 7%;
     --popover-foreground: 0 0% 98%;
 
-    /* Purple/Violet brand color */
-    --primary: 271 91% 65%;
+    /* Signela brand colors - Violet to Magenta gradient */
+    --primary: 265 100% 59%;
     --primary-foreground: 0 0% 100%;
+    --primary-magenta: 291 96% 62%;
 
     --secondary: 0 0% 12%;
     --secondary-foreground: 0 0% 98%;
@@ -26,7 +27,7 @@
     --muted: 0 0% 15%;
     --muted-foreground: 0 0% 65%;
 
-    --accent: 271 91% 65%;
+    --accent: 291 96% 62%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
@@ -34,14 +35,14 @@
 
     --border: 0 0% 18%;
     --input: 0 0% 18%;
-    --ring: 271 91% 65%;
+    --ring: 265 100% 59%;
 
     --radius: 0.75rem;
 
-    /* Custom Signela tokens */
-    --gradient-primary: linear-gradient(135deg, hsl(271 91% 65%) 0%, hsl(280 100% 50%) 50%, hsl(271 91% 65%) 100%);
-    --gradient-glow: linear-gradient(180deg, hsl(271 91% 65% / 0.3) 0%, transparent 100%);
-    --shadow-glow: 0 0 60px -15px hsl(271 91% 65% / 0.5);
+    /* Custom Signela tokens - Violet to Magenta gradient like logo */
+    --gradient-primary: linear-gradient(135deg, hsl(265 100% 59%) 0%, hsl(291 96% 62%) 100%);
+    --gradient-glow: linear-gradient(180deg, hsl(291 96% 62% / 0.3) 0%, transparent 100%);
+    --shadow-glow: 0 0 60px -15px hsl(291 96% 62% / 0.5);
     --shadow-card: 0 25px 50px -12px hsl(0 0% 0% / 0.5);
   }
 
@@ -123,10 +124,10 @@
   @keyframes pulse-glow {
     0%,
     100% {
-      box-shadow: 0 0 20px hsl(271 91% 65% / 0.3);
+      box-shadow: 0 0 20px hsl(265 100% 59% / 0.3);
     }
     50% {
-      box-shadow: 0 0 40px hsl(271 91% 65% / 0.6);
+      box-shadow: 0 0 40px hsl(291 96% 62% / 0.6);
     }
   }
 }
