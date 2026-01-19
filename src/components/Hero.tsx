@@ -7,6 +7,8 @@ const videos = [
   { id: 3, src: "/videos/headSpaWeb.mp4" },
   { id: 4, src: "/videos/publicite2.mp4" },
   { id: 5, src: "/videos/publicite1-alt.mp4" },
+  { id: 6, src: "/videos/publicite1-st2.mp4" },
+  { id: 7, src: "/videos/publicite1-st3.mp4" },
 ];
 export const Hero = () => {
   return <section id="hero" className="relative min-h-screen pt-24 overflow-hidden">
