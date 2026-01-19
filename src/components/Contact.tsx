@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Send, User, Mail, Phone, MessageSquare } from "lucide-react";
+import { Send, User, Mail, Phone, MessageSquare, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -11,6 +11,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useToast } from "@/hooks/use-toast";
+import { createLead } from "@/services/notionLeadService";
 
 const prestations = [
   { value: "video", label: "Vidéos d'entreprise" },
@@ -22,6 +24,8 @@ const prestations = [
 ];
 
 export const Contact = () => {
+  const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -30,10 +34,40 @@ export const Contact = () => {
     message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    // TODO: Implement form submission
+    setIsSubmitting(true);
+
+    const result = await createLead({
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone || undefined,
+      prestation: formData.prestation || undefined,
+      message: formData.message || undefined,
+      type: "Contact",
+    });
+
+    setIsSubmitting(false);
+
+    if (result.success) {
+      toast({
+        title: "Message envoyé !",
+        description: "Nous reviendrons vers vous très rapidement.",
+      });
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        prestation: "",
+        message: "",
+      });
+    } else {
+      toast({
+        title: "Erreur",
+        description: "Une erreur est survenue. Veuillez réessayer.",
+        variant: "destructive",
+      });
+    }
   };
 
   const handleChange = (field: string, value: string) => {
@@ -174,9 +208,19 @@ export const Contact = () => {
               size="lg"
               variant="gradient"
               className="w-full h-12 group"
+              disabled={isSubmitting}
             >
-              Envoyer le message
-              <Send className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+              {isSubmitting ? (
+                <>
+                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                  Envoi en cours...
+                </>
+              ) : (
+                <>
+                  Envoyer le message
+                  <Send className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                </>
+              )}
             </Button>
           </form>
         </motion.div>
