@@ -18,9 +18,9 @@ export const Hero = () => {
       </div>
 
       <div className="container mx-auto px-6 relative z-10 h-[calc(100vh-6rem)]">
-        <div className="grid lg:grid-cols-[1fr,auto] gap-12 h-full items-center">
+        <div className="grid lg:grid-cols-[1fr,auto] gap-8 h-full items-center">
           {/* Left Content - Centered Text */}
-          <div className="flex flex-col items-start justify-center text-left space-y-8 max-w-2xl lg:pl-8">
+          <div className="flex flex-col items-center justify-center text-center space-y-8 max-w-2xl mx-auto lg:mx-0 lg:mr-auto">
             <motion.div initial={{
             opacity: 0,
             y: 30
