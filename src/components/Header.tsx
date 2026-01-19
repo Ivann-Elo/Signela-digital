@@ -35,7 +35,11 @@ export const Header = () => {
               <a
                 key={item.label}
                 href={item.href}
-                onClick={() => setActiveItem(item.label)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setActiveItem(item.label);
+                  document.querySelector(item.href)?.scrollIntoView({ behavior: 'smooth' });
+                }}
                 className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                   activeItem === item.label
                     ? "bg-gradient-primary text-primary-foreground shadow-glow"
@@ -83,7 +87,12 @@ export const Header = () => {
                 <a
                   key={item.label}
                   href={item.href}
-                  onClick={() => setIsOpen(false)}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setIsOpen(false);
+                    setActiveItem(item.label);
+                    document.querySelector(item.href)?.scrollIntoView({ behavior: 'smooth' });
+                  }}
                   className="text-muted-foreground hover:text-foreground transition-colors py-2"
                 >
                   {item.label}
