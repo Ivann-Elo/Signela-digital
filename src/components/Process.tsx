@@ -69,7 +69,7 @@ export const Process = () => {
               className="relative group"
             >
               {/* Large Background Number */}
-              <div className="absolute -top-8 left-0 font-display font-bold text-[120px] text-foreground/5 leading-none select-none pointer-events-none">
+              <div className="absolute -top-16 -left-2 font-display font-bold text-[140px] text-foreground/10 leading-none select-none pointer-events-none">
                 {step.number}
               </div>
 
