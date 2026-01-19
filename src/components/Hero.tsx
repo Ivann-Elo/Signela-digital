@@ -1,25 +1,14 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Phone, ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
-const videoPlaceholders = [{
-  id: 1,
-  label: "VIDEO"
-}, {
-  id: 2,
-  label: "VIDEO"
-}, {
-  id: 3,
-  label: "VIDEO"
-}, {
-  id: 4,
-  label: "VIDEO"
-}, {
-  id: 5,
-  label: "VIDEO"
-}, {
-  id: 6,
-  label: "VIDEO"
-}];
+const videos = [
+  { id: 1, src: "/videos/candylips3.mp4" },
+  { id: 2, src: "/videos/candylips3.mp4" },
+  { id: 3, src: "/videos/candylips3.mp4" },
+  { id: 4, src: "/videos/candylips3.mp4" },
+  { id: 5, src: "/videos/candylips3.mp4" },
+  { id: 6, src: "/videos/candylips3.mp4" },
+];
 export const Hero = () => {
   return <section id="hero" className="relative min-h-screen pt-24 overflow-hidden">
       {/* Background Glow Effects */}
@@ -124,9 +113,18 @@ export const Hero = () => {
                 repeat: Infinity,
                 ease: "linear"
               }} className="flex flex-col gap-4">
-                  {[...videoPlaceholders, ...videoPlaceholders].map((video, index) => <div key={`col1-${index}`} className="w-36 aspect-[9/16] rounded-2xl bg-card border border-border flex items-center justify-center flex-shrink-0 hover:border-primary/30 transition-colors">
-                      <span className="text-muted-foreground text-sm font-medium">{video.label}</span>
-                    </div>)}
+                  {[...videos, ...videos].map((video, index) => (
+                    <video
+                      key={`col1-${index}`}
+                      src={video.src}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      preload="metadata"
+                      className="w-36 aspect-[9/16] rounded-2xl object-cover flex-shrink-0"
+                    />
+                  ))}
                 </motion.div>
               </div>
 
@@ -139,9 +137,18 @@ export const Hero = () => {
                 repeat: Infinity,
                 ease: "linear"
               }} className="flex flex-col gap-4">
-                  {[...videoPlaceholders, ...videoPlaceholders].map((video, index) => <div key={`col2-${index}`} className="w-36 aspect-[9/16] rounded-2xl bg-card border border-border flex items-center justify-center flex-shrink-0 hover:border-primary/30 transition-colors">
-                      <span className="text-muted-foreground text-sm font-medium">{video.label}</span>
-                    </div>)}
+                  {[...videos, ...videos].map((video, index) => (
+                    <video
+                      key={`col2-${index}`}
+                      src={video.src}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      preload="metadata"
+                      className="w-36 aspect-[9/16] rounded-2xl object-cover flex-shrink-0"
+                    />
+                  ))}
                 </motion.div>
               </div>
 
@@ -154,9 +161,18 @@ export const Hero = () => {
                 repeat: Infinity,
                 ease: "linear"
               }} className="flex flex-col gap-4">
-                  {[...videoPlaceholders, ...videoPlaceholders].map((video, index) => <div key={`col3-${index}`} className="w-36 aspect-[9/16] rounded-2xl bg-card border border-border flex items-center justify-center flex-shrink-0 hover:border-primary/30 transition-colors">
-                      <span className="text-muted-foreground text-sm font-medium">{video.label}</span>
-                    </div>)}
+                  {[...videos, ...videos].map((video, index) => (
+                    <video
+                      key={`col3-${index}`}
+                      src={video.src}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      preload="metadata"
+                      className="w-36 aspect-[9/16] rounded-2xl object-cover flex-shrink-0"
+                    />
+                  ))}
                 </motion.div>
               </div>
             </div>
