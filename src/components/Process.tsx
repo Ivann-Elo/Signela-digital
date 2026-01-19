@@ -7,13 +7,15 @@ const steps = [
     number: "1",
     icon: MessageCircle,
     title: "PRISE DE CONTACT",
-    description: "Échangeons sur vos besoins, vos objectifs et votre vision. Un premier rendez-vous pour comprendre votre projet.",
+    description:
+      "Échangeons sur vos besoins, vos objectifs et votre vision. Un premier rendez-vous pour comprendre votre projet.",
   },
   {
     number: "2",
     icon: ClipboardList,
     title: "PRÉSENTATION DU BESOIN",
-    description: "Nous analysons votre marché, votre cible et définissons ensemble une stratégie adaptée à vos ambitions.",
+    description:
+      "Nous analysons votre marché, votre cible et définissons ensemble une stratégie adaptée à vos ambitions.",
   },
   {
     number: "3",
@@ -51,13 +53,12 @@ export const Process = () => {
             <span className="text-gradient">IL N'Y A QU'UN PAS</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto mt-6">
-            Un processus simple et transparent pour donner vie à vos projets 
-            et atteindre vos objectifs commerciaux.
+            Un processus simple et transparent pour donner vie à vos projets et atteindre vos objectifs commerciaux.
           </p>
         </motion.div>
 
         {/* Steps Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-25">
           {steps.map((step, index) => (
             <motion.div
               key={step.number}
@@ -80,12 +81,8 @@ export const Process = () => {
                 </div>
 
                 {/* Content */}
-                <h3 className="font-display font-bold text-lg mb-3">
-                  {step.title}
-                </h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">
-                  {step.description}
-                </p>
+                <h3 className="font-display font-bold text-lg mb-3">{step.title}</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">{step.description}</p>
               </div>
             </motion.div>
           ))}
