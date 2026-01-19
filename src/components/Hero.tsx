@@ -89,6 +89,9 @@ export const Hero = () => {
 
             {/* Videos Container */}
             <div className="relative h-[80vh] flex gap-4">
+              {/* Gradient overlays for smooth fade */}
+              <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-background to-transparent z-10 pointer-events-none" />
+              <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-background to-transparent z-10 pointer-events-none" />
               {/* Label */}
               <motion.div initial={{
               opacity: 0,
