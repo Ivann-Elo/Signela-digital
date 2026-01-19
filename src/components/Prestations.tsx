@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Video, Target, Palette, Share2, Globe, Camera, Smartphone, Lightbulb } from "lucide-react";
+import { PrestationModal } from "./PrestationModal";
 
 const services = [
   {
@@ -77,6 +78,13 @@ const services = [
 
 export const Prestations = () => {
   const [activeService, setActiveService] = useState(services[0]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedPrestation, setSelectedPrestation] = useState<typeof services[0] | null>(null);
+
+  const handleOpenModal = (service: typeof services[0]) => {
+    setSelectedPrestation(service);
+    setIsModalOpen(true);
+  };
 
   return (
     <section id="prestations" className="py-24 relative overflow-hidden">
@@ -178,13 +186,22 @@ export const Prestations = () => {
                 <p className="text-muted-foreground leading-relaxed">
                   {activeService.description}
                 </p>
-                <button className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-border hover:border-primary/50 hover:bg-primary/5 transition-all duration-300 text-foreground font-medium">
+                <button 
+                  onClick={() => handleOpenModal(activeService)}
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-border hover:border-primary/50 hover:bg-primary/5 transition-all duration-300 text-foreground font-medium"
+                >
                   Ça m'intéresse !
                 </button>
               </div>
             </div>
           </motion.div>
         </AnimatePresence>
+
+        <PrestationModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          prestation={selectedPrestation}
+        />
       </div>
     </section>
   );
