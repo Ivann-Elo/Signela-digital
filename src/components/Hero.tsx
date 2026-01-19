@@ -64,7 +64,12 @@ export const Hero = () => {
             duration: 0.6,
             delay: 0.6
           }} className="flex flex-col sm:flex-row gap-4">
-              <Button size="lg" variant="outline" className="border-foreground text-foreground hover:bg-foreground hover:text-background px-8">
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="border-foreground text-foreground hover:bg-foreground hover:text-background px-8"
+                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+              >
                 PARLER DE MES BESOINS
               </Button>
               <Button size="lg" variant="outline" className="border-border hover:bg-secondary px-8">
