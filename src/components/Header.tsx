@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -14,6 +14,22 @@ const navItems = [
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeItem, setActiveItem] = useState("Accueil");
+  const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0 });
+  const navRef = useRef<HTMLDivElement>(null);
+  const itemRefs = useRef<Map<string, HTMLAnchorElement>>(new Map());
+
+  // Update indicator position
+  useEffect(() => {
+    const activeRef = itemRefs.current.get(activeItem);
+    if (activeRef && navRef.current) {
+      const navRect = navRef.current.getBoundingClientRect();
+      const itemRect = activeRef.getBoundingClientRect();
+      setIndicatorStyle({
+        left: itemRect.left - navRect.left,
+        width: itemRect.width,
+      });
+    }
+  }, [activeItem]);
 
   // Scroll spy effect
   useEffect(() => {
@@ -55,32 +71,44 @@ export const Header = () => {
           </a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-1 px-2 py-2 rounded-full bg-card/80 backdrop-blur-md border border-border/50 relative">
+          <nav 
+            ref={navRef}
+            className="hidden md:flex items-center gap-1 px-2 py-2 rounded-full bg-card/80 backdrop-blur-md border border-border/50 relative"
+          >
+            {/* Animated indicator */}
+            <motion.div
+              className="absolute top-2 bottom-2 bg-gradient-primary rounded-full shadow-glow"
+              initial={false}
+              animate={{
+                left: indicatorStyle.left,
+                width: indicatorStyle.width,
+              }}
+              transition={{
+                type: "spring",
+                stiffness: 300,
+                damping: 25,
+                mass: 0.8,
+              }}
+              style={{
+                height: "calc(100% - 16px)",
+              }}
+            />
+            
             {navItems.map((item) => (
               <a
                 key={item.label}
+                ref={(el) => {
+                  if (el) itemRefs.current.set(item.label, el);
+                }}
                 href={item.href}
                 onClick={(e) => {
                   e.preventDefault();
                   setActiveItem(item.label);
                   document.querySelector(item.href)?.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className="relative px-4 py-2 rounded-full text-sm font-medium transition-colors duration-300 z-10"
+                className="relative px-4 py-2 rounded-full text-sm font-medium z-10"
               >
-                {activeItem === item.label && (
-                  <motion.span
-                    layoutId="activeNavBg"
-                    className="absolute inset-0 bg-gradient-primary rounded-full shadow-glow"
-                    initial={{ scale: 0, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{
-                      type: "spring",
-                      stiffness: 380,
-                      damping: 30,
-                    }}
-                  />
-                )}
-                <span className={`relative z-10 transition-colors duration-300 ${
+                <span className={`relative z-10 transition-colors duration-200 ${
                   activeItem === item.label
                     ? "text-primary-foreground"
                     : "text-muted-foreground hover:text-foreground"
