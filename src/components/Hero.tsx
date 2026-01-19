@@ -91,7 +91,7 @@ export const Hero = () => {
             <div 
               className="relative h-[80vh] flex gap-4 overflow-hidden"
               style={{
-                transform: "perspective(1000px) rotateY(-15deg) rotateZ(20deg)",
+                transform: "perspective(800px) rotateY(-12deg)",
                 transformStyle: "preserve-3d"
               }}
             >
