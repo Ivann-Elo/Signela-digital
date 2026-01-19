@@ -91,8 +91,9 @@ export const Hero = () => {
             <div 
               className="relative h-[80vh] flex gap-4 overflow-hidden"
               style={{
-                transform: "perspective(800px) rotateY(-12deg)",
-                transformStyle: "preserve-3d"
+                transform: "perspective(800px) rotateX(8deg)",
+                transformStyle: "preserve-3d",
+                transformOrigin: "center bottom"
               }}
             >
               {/* Gradient overlays for smooth fade */}
