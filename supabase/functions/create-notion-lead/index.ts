@@ -112,9 +112,9 @@ serve(async (req) => {
     }
 
     if (data.googleBusiness) {
-      properties["Google Business"] = {
-        rich_text: [{ text: { content: data.googleBusiness } }],
-      };
+      // Google Business expects a URL - construct a Google Maps search URL
+      const searchQuery = encodeURIComponent(data.googleBusiness);
+      properties["Google Business"] = { url: `https://www.google.com/maps/search/${searchQuery}` };
     }
 
     // Create page in Notion
