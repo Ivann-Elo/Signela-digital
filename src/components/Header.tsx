@@ -5,23 +5,24 @@ import { Button } from "@/components/ui/button";
 import logoBlanc from "@/assets/logo-blanc.png";
 
 const navItems = [
-  { label: "Accueil", href: "#hero" },
-  { label: "Prestations", href: "#prestations" },
-  { label: "Process", href: "#process" },
-  { label: "Contact", href: "#contact" },
+  { label: "Accueil", href: "#hero", active: true },
+  { label: "Prestations", href: "#prestations", active: false },
+  { label: "Process", href: "#process", active: false },
+  { label: "Contact", href: "#contact", active: false },
 ];
 
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [activeItem, setActiveItem] = useState("Accueil");
 
   return (
     <motion.header
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="fixed top-0 left-0 right-0 z-50 glass"
+      className="fixed top-0 left-0 right-0 z-50 py-4"
     >
-      <div className="container mx-auto px-6 py-4">
+      <div className="container mx-auto px-6">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <a href="#" className="flex items-center">
@@ -29,12 +30,17 @@ export const Header = () => {
           </a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden md:flex items-center gap-1 px-2 py-2 rounded-full bg-card/80 backdrop-blur-md border border-border/50">
             {navItems.map((item) => (
               <a
                 key={item.label}
                 href={item.href}
-                className="text-muted-foreground hover:text-foreground transition-colors duration-300 text-sm font-medium"
+                onClick={() => setActiveItem(item.label)}
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                  activeItem === item.label
+                    ? "bg-gradient-primary text-primary-foreground shadow-glow"
+                    : "text-muted-foreground hover:text-foreground hover:bg-secondary/50"
+                }`}
               >
                 {item.label}
               </a>
