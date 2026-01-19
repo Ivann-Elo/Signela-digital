@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowRight, Phone, ArrowLeft } from "lucide-react";
+import { ArrowRight, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 const videos = [
   { id: 1, src: "/videos/candylips3.mp4" },
@@ -72,24 +72,11 @@ export const Hero = () => {
           </div>
 
           {/* Right Content - Vertical Scrolling Videos */}
-          <div className="hidden lg:flex items-center gap-6 h-full">
-            {/* Arrow pointing to videos */}
-            <motion.div initial={{
-            opacity: 0,
-            x: -20
-          }} animate={{
-            opacity: 1,
-            x: 0
-          }} transition={{
-            duration: 0.6,
-            delay: 0.8
-          }} className="flex-shrink-0">
-              <ArrowLeft className="w-10 h-10 text-muted-foreground" />
-            </motion.div>
+          <div className="hidden lg:flex items-center h-full">
 
             {/* Videos Container */}
             <div 
-              className="relative h-[80vh] flex gap-4 overflow-hidden"
+              className="relative h-[85vh] flex gap-5 overflow-hidden"
               style={{
                 transform: "perspective(800px) rotateX(15deg)",
                 transformStyle: "preserve-3d",
@@ -115,7 +102,7 @@ export const Hero = () => {
               </motion.div>
 
               {/* First Video Column */}
-              <div className="w-36 h-full overflow-hidden rounded-2xl">
+              <div className="w-44 h-full overflow-hidden rounded-2xl">
                 <motion.div animate={{
                 y: [0, "-50%"]
               }} transition={{
@@ -132,14 +119,14 @@ export const Hero = () => {
                       loop
                       playsInline
                       preload="metadata"
-                      className="w-36 aspect-[9/16] rounded-2xl object-cover flex-shrink-0"
+                      className="w-44 aspect-[9/16] rounded-2xl object-cover flex-shrink-0"
                     />
                   ))}
                 </motion.div>
               </div>
 
               {/* Second Video Column - Offset */}
-              <div className="w-36 h-[calc(100%-5rem)] overflow-hidden rounded-2xl mt-10 mb-10">
+              <div className="w-44 h-[calc(100%-5rem)] overflow-hidden rounded-2xl mt-10 mb-10">
                 <motion.div animate={{
                 y: ["-50%", 0]
               }} transition={{
@@ -156,14 +143,14 @@ export const Hero = () => {
                       loop
                       playsInline
                       preload="metadata"
-                      className="w-36 aspect-[9/16] rounded-2xl object-cover flex-shrink-0"
+                      className="w-44 aspect-[9/16] rounded-2xl object-cover flex-shrink-0"
                     />
                   ))}
                 </motion.div>
               </div>
 
               {/* Third Video Column */}
-              <div className="w-36 h-full overflow-hidden rounded-2xl">
+              <div className="w-44 h-full overflow-hidden rounded-2xl">
                 <motion.div animate={{
                 y: [0, "-50%"]
               }} transition={{
@@ -180,7 +167,7 @@ export const Hero = () => {
                       loop
                       playsInline
                       preload="metadata"
-                      className="w-36 aspect-[9/16] rounded-2xl object-cover flex-shrink-0"
+                      className="w-44 aspect-[9/16] rounded-2xl object-cover flex-shrink-0"
                     />
                   ))}
                 </motion.div>
