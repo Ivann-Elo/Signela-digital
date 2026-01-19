@@ -150,10 +150,11 @@ export const PrestationModal = ({ isOpen, onClose, prestation }: PrestationModal
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="googleBusiness">Page Google Business</Label>
+                <Label htmlFor="googleBusiness">Fiche Google Business (URL)</Label>
                 <Input
                   id="googleBusiness"
-                  placeholder="Nom de votre établissement"
+                  type="url"
+                  placeholder="https://g.co/kgs/votre-fiche"
                   value={formData.googleBusiness}
                   onChange={(e) => setFormData({ ...formData, googleBusiness: e.target.value })}
                 />
@@ -241,10 +242,11 @@ export const PrestationModal = ({ isOpen, onClose, prestation }: PrestationModal
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="googleBusiness">Page Google Business</Label>
+                <Label htmlFor="googleBusiness">Fiche Google Business (URL)</Label>
                 <Input
                   id="googleBusiness"
-                  placeholder="Nom de votre établissement"
+                  type="url"
+                  placeholder="https://g.co/kgs/votre-fiche"
                   value={formData.googleBusiness}
                   onChange={(e) => setFormData({ ...formData, googleBusiness: e.target.value })}
                 />
