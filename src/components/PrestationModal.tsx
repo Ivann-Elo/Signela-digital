@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Loader2 } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -17,6 +18,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
+import { useToast } from "@/hooks/use-toast";
+import { createLead } from "@/services/notionLeadService";
 
 interface PrestationModalProps {
   isOpen: boolean;
@@ -37,6 +40,8 @@ const budgetOptions = [
 ];
 
 export const PrestationModal = ({ isOpen, onClose, prestation }: PrestationModalProps) => {
+  const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -50,10 +55,7 @@ export const PrestationModal = ({ isOpen, onClose, prestation }: PrestationModal
     message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("Form submitted:", { prestation: prestation?.id, ...formData });
-    // Reset form and close modal
+  const resetForm = () => {
     setFormData({
       name: "",
       email: "",
@@ -66,7 +68,43 @@ export const PrestationModal = ({ isOpen, onClose, prestation }: PrestationModal
       tiktok: "",
       message: "",
     });
-    onClose();
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    const result = await createLead({
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone || undefined,
+      prestation: prestation?.id,
+      budget: formData.budget || undefined,
+      message: formData.message || undefined,
+      instagram: formData.instagram || undefined,
+      tiktok: formData.tiktok || undefined,
+      linkedin: formData.linkedin || undefined,
+      website: formData.website || undefined,
+      googleBusiness: formData.googleBusiness || undefined,
+      type: "Demande devis",
+    });
+
+    setIsSubmitting(false);
+
+    if (result.success) {
+      toast({
+        title: "Demande envoyée !",
+        description: "Nous reviendrons vers vous très rapidement avec un devis personnalisé.",
+      });
+      resetForm();
+      onClose();
+    } else {
+      toast({
+        title: "Erreur",
+        description: "Une erreur est survenue. Veuillez réessayer.",
+        variant: "destructive",
+      });
+    }
   };
 
   if (!prestation) return null;
@@ -316,8 +354,19 @@ export const PrestationModal = ({ isOpen, onClose, prestation }: PrestationModal
           {/* Specific fields based on prestation */}
           {renderSpecificFields()}
 
-          <Button type="submit" className="w-full bg-gradient-primary text-primary-foreground">
-            Envoyer ma demande
+          <Button 
+            type="submit" 
+            className="w-full bg-gradient-primary text-primary-foreground"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? (
+              <>
+                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                Envoi en cours...
+              </>
+            ) : (
+              "Envoyer ma demande"
+            )}
           </Button>
         </form>
       </DialogContent>
