@@ -46,14 +46,17 @@ export const Process = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-20"
         >
-          <span className="text-muted-foreground text-sm mb-4 block">Comment ça marche ?</span>
+           <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-6">
+            Comment ca marche ?
+          </span>
           <h2 className="font-display font-bold text-3xl md:text-4xl lg:text-5xl">
-            DE L'ENVIE À LA RÉALISATION
+            UN PETIT PAS POUR VOUS,
             <br />
-            <span className="text-gradient">IL N'Y A QU'UN PAS</span>
+            <span className="text-gradient">UN GRAND POUR VOTRE SOCIÉTÉ</span>
           </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto mt-6">
-            Un processus simple et transparent pour donner vie à vos projets et atteindre vos objectifs commerciaux.
+          <p className="text-muted-foreground text-lg max-w-4xl mx-auto mt-6 pb-10">
+            Chez Signela digital, nous plaçons la proximité et la confiance au cœur de notre approche, car pour communiquer sur votre entreprise nous devons nous rendre au centre de votre entreprise. L’échange et la relation de confiance sont essentiels.
+Ensemble, nous formons une véritable équipe pour propulser durablement votre activité.
           </p>
         </motion.div>
 
@@ -96,13 +99,14 @@ export const Process = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="text-center"
         >
-          <Button
+          <a href="#contact"><Button
             size="lg"
             className="group bg-gradient-primary hover:opacity-90 text-primary-foreground border-0 px-8"
           >
             Prendre Contact
             <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
           </Button>
+          </a>
         </motion.div>
       </div>
     </section>

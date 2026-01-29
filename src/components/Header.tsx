@@ -7,7 +7,7 @@ import logoBlanc from "@/assets/logo-blanc.png";
 const navItems = [
   { label: "Accueil", href: "#hero", active: true },
   { label: "Prestations", href: "#prestations", active: false },
-  { label: "Process", href: "#process", active: false },
+  { label: "Comment ca marche ?", href: "#process", active: false },
   { label: "Contact", href: "#contact", active: false },
 ];
 
@@ -126,7 +126,7 @@ export const Header = () => {
               className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors text-sm"
             >
               Signela Print
-              <ExternalLink className="w-3 h-3" />
+              {/* <ExternalLink className="w-3 h-3" /> */}
             </a>
             <div className="px-3 py-1.5 rounded-full bg-primary/20 border border-primary/30">
               <span className="text-primary text-xs font-medium">Bientôt disponible</span>

@@ -75,7 +75,7 @@ export const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-24 relative overflow-hidden">
+    <section id="contact" className="pt-10 pb-24 relative overflow-hidden">
       {/* Background Glow */}
       <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px]" />
       <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-accent/10 rounded-full blur-[100px]" />
@@ -90,7 +90,7 @@ export const Contact = () => {
           className="text-center mb-12"
         >
           <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-6">
-            CONTACT
+            Contactez-nous
           </span>
           <h2 className="font-display font-bold text-3xl md:text-4xl lg:text-5xl mb-4">
             Prêt à donner vie
@@ -239,7 +239,9 @@ export const Contact = () => {
             </div>
             <div>
               <p className="text-sm text-muted-foreground">Email</p>
-              <p className="text-foreground font-medium">contact@signela.fr</p>
+              <p className="text-foreground font-medium">
+                <a href="mailto:marketing@signela.fr">marketing@signela.fr</a>
+              </p>
             </div>
           </div>
           <div className="flex items-center gap-4">
@@ -248,7 +250,7 @@ export const Contact = () => {
             </div>
             <div>
               <p className="text-sm text-muted-foreground">Téléphone</p>
-              <p className="text-foreground font-medium">+33 1 23 45 67 89</p>
+              <p className="text-foreground font-medium">+33 7 71 07 72 71</p>
             </div>
           </div>
         </motion.div>

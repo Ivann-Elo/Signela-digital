@@ -12,7 +12,7 @@ const videos = [
   { id: 8, src: "/videos/publicite1-st3.mp4" },
 ];
 export const Hero = () => {
-  return <section id="hero" className="relative min-h-screen pt-24 overflow-hidden">
+  return <section id="hero" className="relative min-h-screen pt-5 overflow-hidden">
       {/* Background Glow Effects */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[120px]" />
@@ -22,7 +22,7 @@ export const Hero = () => {
       <div className="container mx-auto px-6 relative z-10 h-[calc(100vh-6rem)]">
         <div className="grid lg:grid-cols-[1fr,auto] gap-8 h-full items-center">
           {/* Left Content - Centered Text */}
-          <div className="flex flex-col items-center justify-center text-center space-y-8 max-w-2xl mx-auto lg:mx-0 lg:mr-auto">
+          <div className="flex flex-col items-center justify-center text-center pt-20 space-y-8 max-w-2xl mx-auto lg:mx-0 lg:mr-auto">
             <motion.div initial={{
             opacity: 0,
             y: 30
@@ -34,9 +34,9 @@ export const Hero = () => {
             delay: 0.2
           }}>
               <h1 className="font-display font-bold text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-tight">
-                VOTRE PARTENAIRE
+                VOTRE VISIBILITÉ,
                 <br />
-                <span className="text-gradient">POUR BOOSTER VOS VENTES</span>
+                <span className="text-gradient">NOTRE DOMAINE D'EXPERTISE</span>
               </h1>
             </motion.div>
 
@@ -50,8 +50,9 @@ export const Hero = () => {
             duration: 0.6,
             delay: 0.4
           }} className="text-muted-foreground text-lg md:text-xl max-w-xl leading-relaxed">
-              Nous créons des contenus vidéo percutants et des stratégies digitales 
-              qui transforment votre audience en clients fidèles.
+              À <strong>Caen</strong>, nous proposons aux professionnels des solutions complètes de création 
+              de <strong>contenu vidéo</strong> et de stratégies digitales sur mesure. Mais aussi des systèmes <strong>d'automatisation 
+              marketing</strong> innovants pour maximiser votre réactivité en ligne et attirer plus de clients.
             </motion.p>
 
             <motion.div initial={{
@@ -66,15 +67,14 @@ export const Hero = () => {
           }} className="flex flex-col sm:flex-row gap-4">
               <Button 
                 size="lg" 
-                variant="outline" 
-                className="border-foreground text-foreground hover:bg-foreground hover:text-background px-8"
+                className="border-foreground text-foreground bg-gradient-primary hover:bg-foreground px-8"
                 onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
               >
                 PARLER DE MES BESOINS
               </Button>
-              <Button size="lg" variant="outline" className="border-border hover:bg-secondary px-8">
+              <a href="tel:+33771017271"><Button size="lg" variant="outline" className="border-border hover:bg-secondary px-8">
                 APPELER-NOUS
-              </Button>
+              </Button></a>
             </motion.div>
           </div>
 

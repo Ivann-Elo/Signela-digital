@@ -63,7 +63,8 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: "Inter", sans-serif;
+    font-family: "Outfit", sans-serif;
+  
   }
 
   h1,
@@ -73,7 +74,7 @@
   h5,
   h6 {
     font-family: "Outfit", sans-serif;
-    font-weight: 700;
+    font-weight: 800;
   }
 }
 

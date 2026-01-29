@@ -1,4 +1,5 @@
 import { Mail, Phone, MapPin, Instagram, Linkedin, Youtube } from "lucide-react";
+import logoBlanc from "@/assets/logo-blanc.png";
 
 export const Footer = () => {
   return (
@@ -8,13 +9,9 @@ export const Footer = () => {
           {/* Brand */}
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-gradient-primary rounded-lg flex items-center justify-center">
-                <span className="text-primary-foreground font-display font-bold text-xl">S</span>
-              </div>
-              <div>
-                <span className="font-display font-bold text-xl text-foreground">SIGNELA</span>
-                <span className="text-gradient font-display font-bold text-xl ml-1">Digital</span>
-              </div>
+             <a href="#" className="flex items-center">
+            <img src={logoBlanc} alt="Signela Digital" className="h-10 w-auto" />
+          </a>
             </div>
             <p className="text-muted-foreground text-sm">
               Communication vidéo & Marketing digital.
@@ -43,15 +40,15 @@ export const Footer = () => {
             <ul className="space-y-3">
               <li className="flex items-center gap-3 text-muted-foreground text-sm">
                 <Mail className="w-4 h-4 text-primary" />
-                contact@signela.digital
+                <a href="mailto:marketing@signela.fr">marketing@signela.fr</a>
               </li>
               <li className="flex items-center gap-3 text-muted-foreground text-sm">
                 <Phone className="w-4 h-4 text-primary" />
-                +33 1 23 45 67 89
+                +33 7 71 07 72 71
               </li>
               <li className="flex items-center gap-3 text-muted-foreground text-sm">
                 <MapPin className="w-4 h-4 text-primary" />
-                Paris, France
+                Caen, Normandie
               </li>
             </ul>
           </div>
@@ -80,7 +77,7 @@ export const Footer = () => {
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-muted-foreground text-sm">
-            © 2025 Signela Digital. Tous droits réservés.
+            © 2026 Signela Digital. Tous droits réservés.
           </p>
           <div className="flex gap-6">
             <a href="#" className="text-muted-foreground hover:text-foreground text-sm transition-colors">
