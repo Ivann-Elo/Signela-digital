@@ -1,4 +1,5 @@
 import { Mail, Phone, MapPin, Instagram, Linkedin, Youtube } from "lucide-react";
+import { Link } from "react-router-dom";
 import logoBlanc from "@/assets/logo-blanc.png";
 
 export const Footer = () => {
@@ -80,12 +81,12 @@ export const Footer = () => {
             © 2026 Signela Digital. Tous droits réservés.
           </p>
           <div className="flex gap-6">
-            <a href="#" className="text-muted-foreground hover:text-foreground text-sm transition-colors">
+            <Link to="/mentions-legales" className="text-muted-foreground hover:text-foreground text-sm transition-colors">
               Mentions légales
-            </a>
-            <a href="#" className="text-muted-foreground hover:text-foreground text-sm transition-colors">
+            </Link>
+            <Link to="/politique-de-confidentialite" className="text-muted-foreground hover:text-foreground text-sm transition-colors">
               Politique de confidentialité
-            </a>
+            </Link>
           </div>
         </div>
       </div>
