@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -12,9 +13,12 @@ const navItems = [
 ];
 
 export const Header = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [activeItem, setActiveItem] = useState("Accueil");
   const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0 });
+  const [pendingScroll, setPendingScroll] = useState<string | null>(null);
   const navRef = useRef<HTMLDivElement>(null);
   const itemRefs = useRef<Map<string, HTMLAnchorElement>>(new Map());
 
@@ -56,6 +60,42 @@ export const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (location.pathname !== "/" || !pendingScroll) {
+      return;
+    }
+
+    const targetSelector = pendingScroll;
+    setPendingScroll(null);
+
+    requestAnimationFrame(() => {
+      document.querySelector(targetSelector)?.scrollIntoView({ behavior: "smooth" });
+    });
+  }, [location.pathname, pendingScroll]);
+
+  useEffect(() => {
+    if (location.pathname !== "/" || !location.hash) {
+      return;
+    }
+
+    requestAnimationFrame(() => {
+      document.querySelector(location.hash)?.scrollIntoView({ behavior: "smooth" });
+    });
+  }, [location.pathname, location.hash]);
+
+  const handleNavClick = (item: (typeof navItems)[number]) => {
+    setActiveItem(item.label);
+    setIsOpen(false);
+
+    if (location.pathname !== "/") {
+      setPendingScroll(item.href);
+      navigate("/", { replace: false });
+      return;
+    }
+
+    document.querySelector(item.href)?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <motion.header
       initial={{ y: -100 }}
@@ -66,7 +106,14 @@ export const Header = () => {
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <a href="#" className="flex items-center">
+          <a
+            href="#hero"
+            onClick={(e) => {
+              e.preventDefault();
+              handleNavClick(navItems[0]);
+            }}
+            className="flex items-center"
+          >
             <img src={logoBlanc} alt="Signela Digital" className="h-10 w-auto" />
           </a>
 
@@ -103,8 +150,7 @@ export const Header = () => {
                 href={item.href}
                 onClick={(e) => {
                   e.preventDefault();
-                  setActiveItem(item.label);
-                  document.querySelector(item.href)?.scrollIntoView({ behavior: 'smooth' });
+                  handleNavClick(item);
                 }}
                 className="relative px-4 py-2 rounded-full text-sm font-medium z-10"
               >
@@ -157,9 +203,7 @@ export const Header = () => {
                   href={item.href}
                   onClick={(e) => {
                     e.preventDefault();
-                    setIsOpen(false);
-                    setActiveItem(item.label);
-                    document.querySelector(item.href)?.scrollIntoView({ behavior: 'smooth' });
+                    handleNavClick(item);
                   }}
                   className={`transition-colors py-2 ${
                     activeItem === item.label

@@ -16,9 +16,9 @@ const LegalNotice = () => {
                 <h1 className="font-display font-bold text-3xl md:text-4xl text-foreground">
                   Mentions legales
                 </h1>
-                <p className="text-muted-foreground text-sm">Derniere mise a jour : 29 janvier 2026</p>
+                <p className="text-muted-foreground text-sm">Dernière mise à jour : 29 janvier 2026</p>
                 <p className="text-muted-foreground text-xs">
-                  A personnaliser avec vos informations legales et societaires.
+                  À personnaliser avec vos informations légales et sociétaires.
                 </p>
               </div>
 
@@ -26,16 +26,17 @@ const LegalNotice = () => {
                 <section className="space-y-2">
                   <h2 className="text-foreground font-semibold text-lg">Editeur du site</h2>
                   <p>Signela Digital</p>
-                  <p>Forme juridique : A completer</p>
-                  <p>Capital social : A completer</p>
+                  <p>Forme juridique : Micro entreprise
+                  </p>
+                  <p>Capital social : 5 000€</p>
                   <p>RCS / SIREN / SIRET : A completer</p>
                   <p>TVA intracommunautaire : A completer</p>
-                  <p>Siege social : A completer</p>
+                  <p>Siege social : 31P av des carrières</p>
                 </section>
 
                 <section className="space-y-2">
                   <h2 className="text-foreground font-semibold text-lg">Directeur de la publication</h2>
-                  <p>A completer</p>
+                  <p>Ivann Elore</p>
                 </section>
 
                 <section className="space-y-2">
@@ -46,11 +47,11 @@ const LegalNotice = () => {
 
                 <section className="space-y-2">
                   <h2 className="text-foreground font-semibold text-lg">Hebergeur</h2>
-                  <p>Hebergeur : A completer (nom, adresse, telephone)</p>
+                  <p>Hebergeur : IONOS</p>
                 </section>
 
                 <section className="space-y-2">
-                  <h2 className="text-foreground font-semibold text-lg">Propriete intellectuelle</h2>
+                  <h2 className="text-foreground font-semibold text-lg">Propriété intellectuelle</h2>
                   <p>
                     L'ensemble des contenus (textes, images, videos, graphismes, logos, icones) est protegee par le
                     droit de la propriete intellectuelle et demeure la propriete de Signela Digital ou de ses

@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -12,6 +13,53 @@ const videos = [
   { id: 8, src: "/videos/publicite1-st3.mp4" },
 ];
 export const Hero = () => {
+  const [shouldRenderVideos, setShouldRenderVideos] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    const largeScreenQuery = window.matchMedia("(min-width: 1024px)");
+    const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const getSaveData = () =>
+      typeof navigator !== "undefined" && "connection" in navigator
+        ? (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData
+        : false;
+
+    const update = () => {
+      setShouldRenderVideos(
+        largeScreenQuery.matches && !reducedMotionQuery.matches && !getSaveData()
+      );
+    };
+
+    update();
+
+    const addListener = (query: MediaQueryList, handler: () => void) => {
+      if ("addEventListener" in query) {
+        query.addEventListener("change", handler);
+      } else {
+        query.addListener(handler);
+      }
+    };
+
+    const removeListener = (query: MediaQueryList, handler: () => void) => {
+      if ("removeEventListener" in query) {
+        query.removeEventListener("change", handler);
+      } else {
+        query.removeListener(handler);
+      }
+    };
+
+    addListener(largeScreenQuery, update);
+    addListener(reducedMotionQuery, update);
+
+    return () => {
+      removeListener(largeScreenQuery, update);
+      removeListener(reducedMotionQuery, update);
+    };
+  }, []);
+
   return <section id="hero" className="relative min-h-screen pt-5 overflow-hidden">
       {/* Background Glow Effects */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -79,7 +127,8 @@ export const Hero = () => {
           </div>
 
           {/* Right Content - Vertical Scrolling Videos */}
-          <div className="hidden lg:flex items-center h-full">
+          {shouldRenderVideos ? (
+          <div className="items-center h-full hidden lg:flex">
 
             {/* Videos Container */}
             <div 
@@ -181,6 +230,7 @@ export const Hero = () => {
               </div>
             </div>
           </div>
+          ) : null}
         </div>
       </div>
     </section>;
