@@ -14,6 +14,29 @@ const videos = [
 ];
 export const Hero = () => {
   const [shouldRenderVideos, setShouldRenderVideos] = useState(false);
+  const [isIdleReady, setIsIdleReady] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    let idleId: number | null = null;
+    const fallbackTimer = window.setTimeout(() => setIsIdleReady(true), 900);
+
+    if ("requestIdleCallback" in window) {
+      idleId = window.requestIdleCallback(() => setIsIdleReady(true), {
+        timeout: 1400,
+      });
+    }
+
+    return () => {
+      window.clearTimeout(fallbackTimer);
+      if (idleId !== null && "cancelIdleCallback" in window) {
+        window.cancelIdleCallback(idleId);
+      }
+    };
+  }, []);
 
   useEffect(() => {
     if (typeof window === "undefined") {
@@ -22,14 +45,31 @@ export const Hero = () => {
 
     const largeScreenQuery = window.matchMedia("(min-width: 1024px)");
     const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const getSaveData = () =>
+    const connection =
       typeof navigator !== "undefined" && "connection" in navigator
-        ? (navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData
-        : false;
+        ? (navigator as Navigator & {
+            connection?: { saveData?: boolean; effectiveType?: string; downlink?: number };
+          }).connection
+        : undefined;
+
+    const isSlowConnection = () => {
+      if (!connection) return false;
+      if (connection.saveData) return true;
+      if (connection.effectiveType && ["slow-2g", "2g", "3g"].includes(connection.effectiveType)) {
+        return true;
+      }
+      if (typeof connection.downlink === "number" && connection.downlink < 1.6) {
+        return true;
+      }
+      return false;
+    };
 
     const update = () => {
       setShouldRenderVideos(
-        largeScreenQuery.matches && !reducedMotionQuery.matches && !getSaveData()
+        isIdleReady &&
+          largeScreenQuery.matches &&
+          !reducedMotionQuery.matches &&
+          !isSlowConnection()
       );
     };
 
@@ -53,18 +93,25 @@ export const Hero = () => {
 
     addListener(largeScreenQuery, update);
     addListener(reducedMotionQuery, update);
+    if (connection && "addEventListener" in connection) {
+      connection.addEventListener("change", update);
+    }
 
     return () => {
       removeListener(largeScreenQuery, update);
       removeListener(reducedMotionQuery, update);
+      if (connection && "removeEventListener" in connection) {
+        connection.removeEventListener("change", update);
+      }
     };
+  }, [isIdleReady]);
   }, []);
 
   return <section id="hero" className="relative min-h-screen pt-5 overflow-hidden">
       {/* Background Glow Effects */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[120px]" />
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-primary/10 rounded-full blur-[100px]" />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[120px] hidden md:block" />
+        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-primary/10 rounded-full blur-[100px] hidden md:block" />
       </div>
 
       <div className="container mx-auto px-6 relative z-10 h-[calc(100vh-6rem)]">

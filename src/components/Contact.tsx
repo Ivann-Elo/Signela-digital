@@ -77,8 +77,8 @@ export const Contact = () => {
   return (
     <section id="contact" className="pt-10 pb-24 relative overflow-hidden">
       {/* Background Glow */}
-      <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px]" />
-      <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-accent/10 rounded-full blur-[100px]" />
+      <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px] hidden md:block" />
+      <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-accent/10 rounded-full blur-[100px] hidden md:block" />
 
       <div className="container mx-auto px-6 relative z-10 max-w-4xl">
         {/* Header */}
