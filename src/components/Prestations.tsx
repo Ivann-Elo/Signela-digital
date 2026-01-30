@@ -145,14 +145,14 @@ export const Prestations = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.4 }}
-            className="bg-card border border-border rounded-3xl p-8 md:p-12 shadow-card"
+            className="bg-card border border-border rounded-3xl p-6 sm:p-8 md:p-12 shadow-card"
           >
-            <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
               {/* Left - Stats & Features */}
               <div className="space-y-8">
                 <div>
                   <span className="text-muted-foreground text-sm uppercase tracking-wider">PLUS DE</span>
-                  <div className="text-gradient font-display font-bold text-6xl md:text-7xl lg:text-8xl">
+                  <div className="text-gradient font-display font-bold text-5xl sm:text-6xl md:text-7xl lg:text-8xl">
                     {activeService.stat}
                   </div>
                   <span className="text-muted-foreground text-sm uppercase tracking-wider">
@@ -160,18 +160,20 @@ export const Prestations = () => {
                   </span>
                 </div>
 
-                <div className="flex gap-4">
+                <div className="grid grid-cols-2 gap-3 sm:gap-4 lg:flex">
                   {activeService.features.map((feature, index) => (
                     <motion.div
                       key={feature.label}
                       initial={{ opacity: 0, scale: 0.8 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ duration: 0.3, delay: index * 0.1 }}
-                      className="flex-1"
+                      className="flex-1 min-w-0"
                     >
-                      <div className="aspect-square rounded-2xl bg-secondary border border-border flex flex-col items-center justify-center p-4 hover:border-primary/30 transition-colors">
-                        <feature.icon className="w-8 h-8 text-primary mb-2" />
-                        <span className="text-xs text-muted-foreground text-center">{feature.label}</span>
+                      <div className="rounded-2xl bg-secondary border border-border flex flex-col items-center justify-center p-3 sm:p-4 min-h-[120px] sm:min-h-[140px] hover:border-primary/30 transition-colors text-center">
+                        <feature.icon className="w-7 h-7 sm:w-8 sm:h-8 text-primary mb-2" />
+                        <span className="text-[11px] sm:text-xs text-muted-foreground text-center leading-snug">
+                          {feature.label}
+                        </span>
                       </div>
                     </motion.div>
                   ))}
@@ -180,10 +182,10 @@ export const Prestations = () => {
 
               {/* Right - Description */}
               <div className="space-y-6">
-                <h3 className="font-display font-bold text-2xl md:text-3xl">
+                <h3 className="font-display font-bold text-xl sm:text-2xl md:text-3xl">
                   {activeService.title}
                 </h3>
-                <p className="text-muted-foreground leading-relaxed">
+                <p className="text-muted-foreground leading-relaxed text-sm sm:text-base">
                   {activeService.description}
                 </p>
                 <button 
