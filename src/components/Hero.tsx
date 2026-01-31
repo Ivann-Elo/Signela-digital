@@ -45,6 +45,9 @@ export const Hero = () => {
 
     const largeScreenQuery = window.matchMedia("(min-width: 1024px)");
     const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const reducedDataQuery = window.matchMedia("(prefers-reduced-data: reduce)");
+    const hoverQuery = window.matchMedia("(hover: hover)");
+    const pointerQuery = window.matchMedia("(pointer: fine)");
     const connection =
       typeof navigator !== "undefined" && "connection" in navigator
         ? (navigator as Navigator & {
@@ -68,7 +71,10 @@ export const Hero = () => {
       setShouldRenderVideos(
         isIdleReady &&
           largeScreenQuery.matches &&
+          hoverQuery.matches &&
+          pointerQuery.matches &&
           !reducedMotionQuery.matches &&
+          !reducedDataQuery.matches &&
           !isSlowConnection()
       );
     };
@@ -93,6 +99,9 @@ export const Hero = () => {
 
     addListener(largeScreenQuery, update);
     addListener(reducedMotionQuery, update);
+    addListener(reducedDataQuery, update);
+    addListener(hoverQuery, update);
+    addListener(pointerQuery, update);
     if (connection && "addEventListener" in connection) {
       connection.addEventListener("change", update);
     }
@@ -100,12 +109,14 @@ export const Hero = () => {
     return () => {
       removeListener(largeScreenQuery, update);
       removeListener(reducedMotionQuery, update);
+      removeListener(reducedDataQuery, update);
+      removeListener(hoverQuery, update);
+      removeListener(pointerQuery, update);
       if (connection && "removeEventListener" in connection) {
         connection.removeEventListener("change", update);
       }
     };
   }, [isIdleReady]);
-  }, []);
 
   return <section id="hero" className="relative min-h-screen pt-5 overflow-hidden">
       {/* Background Glow Effects */}

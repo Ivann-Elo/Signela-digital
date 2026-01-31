@@ -54,10 +54,11 @@ export const Header = () => {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    const scrollOptions: AddEventListenerOptions = { passive: true };
+    window.addEventListener('scroll', handleScroll, scrollOptions);
     handleScroll(); // Initial check
     
-    return () => window.removeEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll, scrollOptions);
   }, []);
 
   useEffect(() => {

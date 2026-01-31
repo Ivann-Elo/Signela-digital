@@ -45,7 +45,7 @@ export const Footer = () => {
               </li>
               <li className="flex items-center gap-3 text-muted-foreground text-sm">
                 <Phone className="w-4 h-4 text-primary" />
-                +33 7 71 07 72 71
+                +33 7 71 01 72 71
               </li>
               <li className="flex items-center gap-3 text-muted-foreground text-sm">
                 <MapPin className="w-4 h-4 text-primary" />

@@ -250,7 +250,7 @@ export const Contact = () => {
             </div>
             <div>
               <p className="text-sm text-muted-foreground">Téléphone</p>
-              <p className="text-foreground font-medium">+33 7 71 07 72 71</p>
+              <p className="text-foreground font-medium">+33 7 71 01 72 71</p>
             </div>
           </div>
         </motion.div>
