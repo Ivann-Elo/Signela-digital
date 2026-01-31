@@ -75,7 +75,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      <main>
+      <main className="pb-24 md:pb-0">
         <Hero />
         {showBelowFold ? (
           <>

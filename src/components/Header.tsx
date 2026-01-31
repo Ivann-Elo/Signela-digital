@@ -1,26 +1,27 @@
 import { useState, useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ExternalLink } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
+import { Briefcase, Home, Phone, Workflow } from "lucide-react";
 import logoBlanc from "@/assets/logo-blanc.png";
 
 const navItems = [
-  { label: "Accueil", href: "#hero", active: true },
-  { label: "Prestations", href: "#prestations", active: false },
-  { label: "Comment ca marche ?", href: "#process", active: false },
-  { label: "Contact", href: "#contact", active: false },
+  { label: "Accueil", shortLabel: "Accueil", href: "#hero", active: true, icon: Home },
+  { label: "Prestations", shortLabel: "Prestations", href: "#prestations", active: false, icon: Briefcase },
+  { label: "Comment ca marche ?", shortLabel: "Etapes", href: "#process", active: false, icon: Workflow },
+  { label: "Contact", shortLabel: "Contact", href: "#contact", active: false, icon: Phone },
 ];
 
 export const Header = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const [isOpen, setIsOpen] = useState(false);
   const [activeItem, setActiveItem] = useState("Accueil");
   const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0 });
+  const [mobileIndicatorStyle, setMobileIndicatorStyle] = useState({ left: 0, width: 0 });
   const [pendingScroll, setPendingScroll] = useState<string | null>(null);
   const navRef = useRef<HTMLDivElement>(null);
   const itemRefs = useRef<Map<string, HTMLAnchorElement>>(new Map());
+  const mobileNavRef = useRef<HTMLDivElement>(null);
+  const mobileItemRefs = useRef<Map<string, HTMLAnchorElement>>(new Map());
 
   // Update indicator position
   useEffect(() => {
@@ -29,6 +30,18 @@ export const Header = () => {
       const navRect = navRef.current.getBoundingClientRect();
       const itemRect = activeRef.getBoundingClientRect();
       setIndicatorStyle({
+        left: itemRect.left - navRect.left,
+        width: itemRect.width,
+      });
+    }
+  }, [activeItem]);
+
+  useEffect(() => {
+    const activeRef = mobileItemRefs.current.get(activeItem);
+    if (activeRef && mobileNavRef.current) {
+      const navRect = mobileNavRef.current.getBoundingClientRect();
+      const itemRect = activeRef.getBoundingClientRect();
+      setMobileIndicatorStyle({
         left: itemRect.left - navRect.left,
         width: itemRect.width,
       });
@@ -86,7 +99,6 @@ export const Header = () => {
 
   const handleNavClick = (item: (typeof navItems)[number]) => {
     setActiveItem(item.label);
-    setIsOpen(false);
 
     if (location.pathname !== "/") {
       setPendingScroll(item.href);
@@ -98,38 +110,108 @@ export const Header = () => {
   };
 
   return (
-    <motion.header
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className="fixed top-0 left-0 right-0 z-50 py-4"
-    >
-      <div className="container mx-auto px-6">
-        <div className="flex items-center justify-between">
-          {/* Logo */}
-          <a
-            href="#hero"
-            onClick={(e) => {
-              e.preventDefault();
-              handleNavClick(navItems[0]);
-            }}
-            className="flex items-center"
-          >
-            <img src={logoBlanc} alt="Signela Digital" className="h-10 w-auto" />
-          </a>
+    <>
+      <motion.header
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="fixed top-0 left-0 right-0 z-50 py-4"
+      >
+        <div className="container mx-auto px-6">
+          <div className="flex items-center justify-between">
+            {/* Logo */}
+            <a
+              href="#hero"
+              onClick={(e) => {
+                e.preventDefault();
+                handleNavClick(navItems[0]);
+              }}
+              className="flex items-center"
+            >
+              <img src={logoBlanc} alt="Signela Digital" className="h-10 w-auto" />
+            </a>
 
-          {/* Desktop Navigation */}
-          <nav 
-            ref={navRef}
-            className="hidden md:flex items-center gap-1 px-2 py-2 rounded-full bg-card/80 backdrop-blur-md border border-border/50 relative"
+            {/* Desktop Navigation */}
+            <nav 
+              ref={navRef}
+              className="hidden md:flex items-center gap-1 px-2 py-2 rounded-full bg-card/80 backdrop-blur-md border border-border/50 relative"
+            >
+              {/* Animated indicator */}
+              <motion.div
+                className="absolute top-2 bottom-2 bg-gradient-primary rounded-full shadow-glow"
+                initial={false}
+                animate={{
+                  left: indicatorStyle.left,
+                  width: indicatorStyle.width,
+                }}
+                transition={{
+                  type: "spring",
+                  stiffness: 300,
+                  damping: 25,
+                  mass: 0.8,
+                }}
+                style={{
+                  height: "calc(100% - 16px)",
+                }}
+              />
+              
+              {navItems.map((item) => (
+                <a
+                  key={item.label}
+                  ref={(el) => {
+                    if (el) itemRefs.current.set(item.label, el);
+                  }}
+                  href={item.href}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavClick(item);
+                  }}
+                  className="relative px-4 py-2 rounded-full text-sm font-medium z-10"
+                >
+                  <span className={`relative z-10 transition-colors duration-200 ${
+                    activeItem === item.label
+                      ? "text-primary-foreground"
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}>
+                    {item.label}
+                  </span>
+                </a>
+              ))}
+            </nav>
+
+            {/* CTA Buttons */}
+            <div className="hidden md:flex items-center gap-4">
+              <a
+                href="#"
+                className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors text-sm"
+              >
+                Signela Print
+              </a>
+              <div className="px-3 py-1.5 rounded-full bg-primary/20 border border-primary/30">
+                <span className="text-primary text-xs font-medium">Bientôt disponible</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </motion.header>
+
+      {/* Mobile Bottom Navigation */}
+      <nav
+        className="md:hidden fixed bottom-0 left-0 right-0 z-50"
+        style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
+        aria-label="Navigation principale"
+      >
+        <div className="mx-4 mb-2 rounded-2xl bg-card/90 backdrop-blur-md border border-border/60 shadow-card">
+          <div
+            ref={mobileNavRef}
+            className="relative grid grid-cols-4 gap-1 px-2 py-2"
           >
-            {/* Animated indicator */}
             <motion.div
-              className="absolute top-2 bottom-2 bg-gradient-primary rounded-full shadow-glow"
+              className="absolute inset-y-2 bg-gradient-primary rounded-xl shadow-glow"
               initial={false}
               animate={{
-                left: indicatorStyle.left,
-                width: indicatorStyle.width,
+                left: mobileIndicatorStyle.left,
+                width: mobileIndicatorStyle.width,
               }}
               transition={{
                 type: "spring",
@@ -141,84 +223,34 @@ export const Header = () => {
                 height: "calc(100% - 16px)",
               }}
             />
-            
-            {navItems.map((item) => (
-              <a
-                key={item.label}
-                ref={(el) => {
-                  if (el) itemRefs.current.set(item.label, el);
-                }}
-                href={item.href}
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick(item);
-                }}
-                className="relative px-4 py-2 rounded-full text-sm font-medium z-10"
-              >
-                <span className={`relative z-10 transition-colors duration-200 ${
-                  activeItem === item.label
-                    ? "text-primary-foreground"
-                    : "text-muted-foreground hover:text-foreground"
-                }`}>
-                  {item.label}
-                </span>
-              </a>
-            ))}
-          </nav>
-
-          {/* CTA Buttons */}
-          <div className="hidden md:flex items-center gap-4">
-            <a
-              href="#"
-              className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors text-sm"
-            >
-              Signela Print
-              {/* <ExternalLink className="w-3 h-3" /> */}
-            </a>
-            <div className="px-3 py-1.5 rounded-full bg-primary/20 border border-primary/30">
-              <span className="text-primary text-xs font-medium">Bientôt disponible</span>
-            </div>
-          </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 text-foreground"
-          >
-            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
-        </div>
-
-        {/* Mobile Navigation */}
-        {isOpen && (
-          <motion.nav
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden mt-4 pb-4"
-          >
-            <div className="flex flex-col gap-4">
-              {navItems.map((item) => (
+            {navItems.map((item) => {
+              const Icon = item.icon;
+              const isActive = activeItem === item.label;
+              return (
                 <a
                   key={item.label}
+                  ref={(el) => {
+                    if (el) mobileItemRefs.current.set(item.label, el);
+                  }}
                   href={item.href}
+                  title={item.label}
                   onClick={(e) => {
                     e.preventDefault();
                     handleNavClick(item);
                   }}
-                  className={`transition-colors py-2 ${
-                    activeItem === item.label
-                      ? "text-primary font-medium"
-                      : "text-muted-foreground hover:text-foreground"
-                  }`}
+                  aria-current={isActive ? "page" : undefined}
+                  className="relative z-10 flex flex-col items-center justify-center gap-1 rounded-xl py-2 text-xs font-medium"
                 >
-                  {item.label}
+                  <Icon className={isActive ? "h-5 w-5 text-primary-foreground" : "h-5 w-5 text-muted-foreground"} />
+                  <span className={isActive ? "text-primary-foreground" : "text-muted-foreground"}>
+                    {item.shortLabel ?? item.label}
+                  </span>
                 </a>
-              ))}
-            </div>
-          </motion.nav>
-        )}
-      </div>
-    </motion.header>
+              );
+            })}
+          </div>
+        </div>
+      </nav>
+    </>
   );
 };

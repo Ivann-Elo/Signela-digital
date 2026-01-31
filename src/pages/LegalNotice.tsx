@@ -7,7 +7,7 @@ const LegalNotice = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      <main className="relative">
+      <main className="relative pb-24 md:pb-0">
         <div className="absolute inset-0 bg-gradient-to-b from-background via-card/40 to-background" />
         <section className="container mx-auto px-6 py-16 relative z-10">
           <div className="max-w-4xl mx-auto">

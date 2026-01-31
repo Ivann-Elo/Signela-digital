@@ -4,7 +4,7 @@ import logoBlanc from "@/assets/logo-blanc.png";
 
 export const Footer = () => {
   return (
-    <footer id="contact" className="bg-card border-t border-border py-16">
+    <footer id="contact" className="bg-card border-t border-border pt-16 pb-24 md:pb-16">
       <div className="container mx-auto px-6">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           {/* Brand */}
