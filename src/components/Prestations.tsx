@@ -87,7 +87,7 @@ export const Prestations = () => {
   };
 
   return (
-    <section id="prestations" className="py-24 relative overflow-hidden">
+    <section id="prestations" className="py-16 md:py-24 relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-card/50 to-background" />
 
@@ -98,7 +98,7 @@ export const Prestations = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-10 md:mb-16"
         >
           <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-6">
             Nos prestations
@@ -120,7 +120,7 @@ export const Prestations = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="flex flex-wrap justify-center gap-2 mb-12"
+          className="flex flex-wrap justify-center gap-2 mb-8 md:mb-12"
         >
           {services.map((service) => (
             <button
