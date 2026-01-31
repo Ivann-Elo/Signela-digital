@@ -93,9 +93,9 @@ export const Contact = () => {
             Contactez-nous
           </span>
           <h2 className="font-display font-bold text-3xl md:text-4xl lg:text-5xl mb-4">
-            Prêt à donner vie
+            PRÊT À DONNER VIE
             <br />
-            <span className="text-gradient">à votre projet ?</span>
+            <span className="text-gradient">À VOS PROJETS ?</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-xl mx-auto">
             Parlez-nous de votre vision et laissez-nous vous accompagner dans 

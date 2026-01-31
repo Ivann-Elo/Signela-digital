@@ -7,7 +7,7 @@ import logoBlanc from "@/assets/logo-blanc.png";
 const navItems = [
   { label: "Accueil", shortLabel: "Accueil", href: "#hero", active: true, icon: Home },
   { label: "Prestations", shortLabel: "Prestations", href: "#prestations", active: false, icon: Briefcase },
-  { label: "Comment ca marche ?", shortLabel: "Etapes", href: "#process", active: false, icon: Workflow },
+  { label: "Comment ça marche ?", shortLabel: "Étapes", href: "#process", active: false, icon: Workflow },
   { label: "Contact", shortLabel: "Contact", href: "#contact", active: false, icon: Phone },
 ];
 

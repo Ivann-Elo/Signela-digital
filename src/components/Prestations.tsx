@@ -13,14 +13,14 @@ const services = [
     title: "CAPTER L'ATTENTION À TRAVERS LE CONTENU VIDÉO",
     description: "La vidéo marketing est aujourd’hui le levier le plus puissant pour capter l’attention et générer de la conversion. Nous avons fait du contenu vidéo de qualité le pilier de notre stratégie digitale, car il performe sur toutes les plateformes et touche toutes les audiences. Grâce à des scripts vidéo optimisés, pensés pour convaincre, engager et convertir, nous transformons vos prospects en clients et renforçons durablement votre visibilité en ligne.",
     features: [
-      { icon: Camera, label: "Matériels professionnel." },
+      { icon: Camera, label: "Matériel professionnel." },
       { icon: TabletSmartphone, label: "Contenu adapté au support de communication." },
       { icon: FilePen, label: "Écriture de script pensé pour la performance." },
     ],
   },
   {
     id: "ads",
-    label: "Campagne Meta aAds",
+    label: "Campagne Meta Ads",
     icon: Target,
     stat: "50+",
     statLabel: "CAMPAGNES LANCÉES",
@@ -53,10 +53,10 @@ const services = [
     stat: "1M+",
     statLabel: "IMPRESSIONS GÉNÉRÉES",
     title: "ENGAGEZ VOTRE COMMUNAUTÉ",
-    description: "Créez une présence sociale forte et cohérente grâce à des contenus engageants et une stratégie de community management structurée. Nous développons votre visibilité sur les réseaux sociaux, renforçons la relation avec votre communauté et transformons vos plateformes sociales en véritables leviers de notoriété, d’engagement et de conversion..",
+    description: "Créez une présence sociale forte et cohérente grâce à des contenus engageants et une stratégie de community management structurée. Nous développons votre visibilité sur les réseaux sociaux, renforçons la relation avec votre communauté et transformons vos plateformes sociales en véritables leviers de notoriété, d’engagement et de conversion.",
     features: [
       { icon: Share2, label: "Stratégie de communication" },
-      { icon: Camera, label: "Création Contenu" },
+      { icon: Camera, label: "Création de contenu" },
       { icon: Target, label: "Community Mgmt" },
     ],
   },
@@ -110,8 +110,8 @@ export const Prestations = () => {
             <span className="text-gradient">CE QUE NOUS VOUS PROPOSONS</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-4xl mx-auto">
-            <strong>Plusieurs leviers</strong> pour booster votre communication et atteindre vos objectifs. Parce que chaque entreprise à ces besoins, nous avons des <strong>solutions adaptées</strong>, pour chacune d'entre elles.
-            L'identité visuelle doit être le reflet de votre entreprise, de vos <strong>valeurs et de votre vision</strong>. Nous sommes la pour la mettre en avant et la diffuser de manière ciblé, en <strong>optimisant votre budget publicitaire</strong>.
+            <strong>Plusieurs leviers</strong> pour booster votre communication et atteindre vos objectifs. Parce que chaque entreprise a ses besoins, nous avons des <strong>solutions adaptées</strong> pour chacune d'entre elles.
+            L'identité visuelle doit être le reflet de votre entreprise, de vos <strong>valeurs et de votre vision</strong>. Nous sommes là pour la mettre en avant et la diffuser de manière ciblée, en <strong>optimisant votre budget publicitaire</strong>.
           </p>
         </motion.div>
 

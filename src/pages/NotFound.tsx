@@ -1,5 +1,7 @@
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
+import { Seo } from "@/components/Seo";
+import { siteUrl } from "@/lib/seo";
 
 const NotFound = () => {
   const location = useLocation();
@@ -10,6 +12,12 @@ const NotFound = () => {
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-muted">
+      <Seo
+        title="Page introuvable"
+        description="La page demandée est introuvable."
+        canonical={`${siteUrl}/`}
+        robots="noindex,follow"
+      />
       <div className="text-center">
         <h1 className="mb-4 text-4xl font-bold">404</h1>
         <p className="mb-4 text-xl text-muted-foreground">Oops! Page not found</p>

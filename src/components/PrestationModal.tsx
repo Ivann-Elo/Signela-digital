@@ -86,7 +86,7 @@ export const PrestationModal = ({ isOpen, onClose, prestation }: PrestationModal
       linkedin: formData.linkedin || undefined,
       website: formData.website || undefined,
       googleBusiness: formData.googleBusiness || undefined,
-      type: "Demande devis",
+      type: "Demande de devis",
     });
 
     setIsSubmitting(false);

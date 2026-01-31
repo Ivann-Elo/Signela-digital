@@ -47,16 +47,16 @@ export const Process = () => {
           className="text-center mb-20"
         >
            <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-6">
-            Comment ca marche ?
+            Comment ça marche ?
           </span>
           <h2 className="font-display font-bold text-3xl md:text-4xl lg:text-5xl">
             UN PETIT PAS POUR VOUS,
             <br />
-            <span className="text-gradient">UN GRAND POUR VOTRE SOCIÉTÉ</span>
+            <span className="text-gradient">UN GRAND POUR VOTRE ENTREPRISE</span>
           </h2>
           <p className="text-muted-foreground text-lg max-w-4xl mx-auto mt-6 pb-10">
-            Chez Signela digital, nous plaçons la proximité et la confiance au cœur de notre approche, car pour communiquer sur votre entreprise nous devons nous rendre au centre de votre entreprise. L’échange et la relation de confiance sont essentiels.
-Ensemble, nous formons une véritable équipe pour propulser durablement votre activité.
+            Chez Signela Digital, nous plaçons la proximité et la confiance au cœur de notre approche, car pour communiquer sur votre entreprise nous devons nous rendre au centre de votre entreprise. L’échange et la relation de confiance sont essentiels.
+            Ensemble, nous formons une véritable équipe pour propulser durablement votre activité.
           </p>
         </motion.div>
 

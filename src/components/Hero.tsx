@@ -156,7 +156,7 @@ export const Hero = () => {
             duration: 0.6,
             delay: 0.4
           }} className="text-muted-foreground text-lg md:text-xl max-w-xl leading-relaxed">
-              À <strong>Caen</strong>, nous proposons aux professionnels des solutions complètes de création 
+              À <strong>Caen</strong>, en <strong>Normandie</strong>, notre agence de <strong>marketing vidéo</strong> propose aux professionnels des solutions complètes de création 
               de <strong>contenu vidéo</strong> et de stratégies digitales sur mesure. Mais aussi des systèmes <strong>d'automatisation 
               marketing</strong> innovants pour maximiser votre réactivité en ligne et attirer plus de clients.
             </motion.p>
@@ -176,10 +176,10 @@ export const Hero = () => {
                 className="border-foreground text-foreground bg-gradient-primary hover:bg-foreground px-8"
                 onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
               >
-                PARLER DE MES BESOINS
+                PARLEZ DE VOS BESOINS
               </Button>
               <a href="tel:+33771017271"><Button size="lg" variant="outline" className="border-border hover:bg-secondary px-8">
-                APPELER-NOUS
+                APPELEZ-NOUS
               </Button></a>
             </motion.div>
           </div>

@@ -1,6 +1,8 @@
 import { lazy, Suspense, useEffect, useState } from "react";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
+import { Seo } from "@/components/Seo";
+import { localBusinessJsonLd, siteUrl } from "@/lib/seo";
 
 const Prestations = lazy(() =>
   import("@/components/Prestations").then((module) => ({ default: module.Prestations }))
@@ -74,6 +76,12 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Seo
+        description="Agence de marketing vidéo et communication à Caen (Normandie). Production vidéo, social media ads, stratégie digitale et création de contenu."
+        canonical={`${siteUrl}/`}
+        ogType="website"
+        jsonLd={localBusinessJsonLd}
+      />
       <Header />
       <main className="pb-24 md:pb-0">
         <Hero />
