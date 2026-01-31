@@ -1,5 +1,3 @@
-import { ArrowLeft } from "lucide-react";
-import { Link } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Seo } from "@/components/Seo";
@@ -23,7 +21,7 @@ const LegalNotice = () => {
                 <h1 className="font-display font-bold text-3xl md:text-4xl text-foreground">
                   Mentions légales
                 </h1>
-                <p className="text-muted-foreground text-sm">Dernière mise à jour : 29 janvier 2026</p>
+                <p className="text-muted-foreground text-sm">Dernière mise à jour : 31 janvier 2026</p>
                 <p className="text-muted-foreground text-xs">
                   À personnaliser avec vos informations légales et sociétaires.
                 </p>

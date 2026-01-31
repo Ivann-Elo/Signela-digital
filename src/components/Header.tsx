@@ -128,7 +128,7 @@ export const Header = () => {
               }}
               className="flex items-center"
             >
-              <img src={logoBlanc} alt="Signela Digital" className="h-10 w-auto" />
+              <img src={logoBlanc} alt="Signela Digital" className="h-12 md:h-14 w-auto" />
             </a>
 
             {/* Desktop Navigation */}

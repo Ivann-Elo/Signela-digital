@@ -1,6 +1,7 @@
 import { Mail, Phone, MapPin, Instagram, Linkedin, Youtube } from "lucide-react";
 import { Link } from "react-router-dom";
 import logoBlanc from "@/assets/logo-blanc.png";
+import { openCookiePreferences } from "@/lib/consent";
 
 export const Footer = () => {
   return (
@@ -80,13 +81,23 @@ export const Footer = () => {
           <p className="text-muted-foreground text-sm">
             © 2026 Signela Digital. Tous droits réservés.
           </p>
-          <div className="flex gap-6">
+          <div className="flex flex-wrap gap-6">
             <Link to="/mentions-legales" className="text-muted-foreground hover:text-foreground text-sm transition-colors">
               Mentions légales
             </Link>
             <Link to="/politique-de-confidentialite" className="text-muted-foreground hover:text-foreground text-sm transition-colors">
               Politique de confidentialité
             </Link>
+            <Link to="/politique-de-cookies" className="text-muted-foreground hover:text-foreground text-sm transition-colors">
+              Politique de cookies
+            </Link>
+            <button
+              type="button"
+              onClick={openCookiePreferences}
+              className="text-muted-foreground hover:text-foreground text-sm transition-colors"
+            >
+              Gérer mes cookies
+            </button>
           </div>
         </div>
       </div>

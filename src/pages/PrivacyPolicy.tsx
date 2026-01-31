@@ -1,5 +1,3 @@
-import { ArrowLeft } from "lucide-react";
-import { Link } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Seo } from "@/components/Seo";
@@ -23,7 +21,7 @@ const PrivacyPolicy = () => {
                 <h1 className="font-display font-bold text-3xl md:text-4xl text-foreground">
                   Politique de confidentialité
                 </h1>
-                <p className="text-muted-foreground text-sm">Dernière mise à jour : 29 janvier 2026</p>
+                <p className="text-muted-foreground text-sm">Dernière mise à jour : 31 janvier 2026</p>
                 <p className="text-muted-foreground text-xs">
                   À personnaliser selon vos traitements et outils (analytics, CRM, emailing, etc.).
                 </p>
@@ -95,7 +93,12 @@ const PrivacyPolicy = () => {
                   <h2 className="text-foreground font-semibold text-lg">Cookies</h2>
                   <p>
                     Le site peut utiliser des cookies techniques nécessaires à son fonctionnement. Si des outils de
-                    mesure d'audience ou marketing sont ajoutés, un bandeau de consentement sera mis en place.
+                    mesure d'audience ou marketing sont ajoutés, un bandeau de consentement sera mis en place. Pour en
+                    savoir plus, consultez notre{" "}
+                    <a className="text-foreground hover:underline" href="/politique-de-cookies">
+                      politique de cookies
+                    </a>
+                    .
                   </p>
                 </section>
 
