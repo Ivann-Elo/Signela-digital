@@ -87,7 +87,8 @@ export const Prestations = () => {
   };
 
   return (
-    <section id="prestations" className="py-16 md:py-24 relative overflow-hidden">
+    <section id="prestations" className="pt-8 pb-16 md:py-24 relative overflow-hidden"
+>
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-card/50 to-background" />
 
