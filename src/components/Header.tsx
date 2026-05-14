@@ -182,13 +182,13 @@ export const Header = () => {
             {/* CTA Buttons */}
             <div className="hidden md:flex items-center gap-4">
               <a
-                href="#"
+                href="https://signela.fr"
                 className="flex items-center gap-2 text-muted-foreground hover:text-foreground transition-colors text-sm"
               >
                 Signela Print
               </a>
-              <div className="px-3 py-1.5 rounded-full bg-primary/20 border border-primary/30">
-                <span className="text-primary text-xs font-medium">Bientôt disponible</span>
+              <div className="px-3 py-1.5 rounded-full border border-[#5FAF2F]/60">
+                <span className="text-[#5FAF2F] text-xs font-medium">Bientôt disponible</span>
               </div>
             </div>
           </div>
