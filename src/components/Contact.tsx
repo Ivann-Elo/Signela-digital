@@ -240,7 +240,7 @@ export const Contact = () => {
             <div>
               <p className="text-sm text-muted-foreground">Email</p>
               <p className="text-foreground font-medium">
-                <a href="mailto:marketing@signela.fr">marketing@signela.fr</a>
+                <a href="mailto:contact@signela-digital.fr">contact@signela-digital.fr</a>
               </p>
             </div>
           </div>

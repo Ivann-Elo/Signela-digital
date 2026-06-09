@@ -42,7 +42,7 @@ export const Footer = () => {
             <ul className="space-y-3">
               <li className="flex items-center gap-3 text-muted-foreground text-sm">
                 <Mail className="w-4 h-4 text-primary" />
-                <a href="mailto:marketing@signela.fr">marketing@signela.fr</a>
+                <a href="mailto:contact@signela-digital.fr">contact@signela-digital.fr</a>
               </li>
               <li className="flex items-center gap-3 text-muted-foreground text-sm">
                 <Phone className="w-4 h-4 text-primary" />
