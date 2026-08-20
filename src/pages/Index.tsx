@@ -3,6 +3,7 @@ import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { Seo } from "@/components/Seo";
 import { localBusinessJsonLd, siteUrl } from "@/lib/seo";
+import { services } from "@/data/services";
 
 const Prestations = lazy(() =>
   import("@/components/Prestations").then((module) => ({ default: module.Prestations }))
@@ -19,6 +20,7 @@ const Footer = lazy(() =>
 
 const Index = () => {
   const [showBelowFold, setShowBelowFold] = useState(false);
+  const [activeServiceId, setActiveServiceId] = useState(services[0].id);
 
   useEffect(() => {
     if (typeof window === "undefined") {
@@ -77,7 +79,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <Seo
-        description="Agence de marketing vidéo et communication à Caen (Normandie). Production vidéo, social media ads, stratégie digitale et création de contenu."
+        description="Agence de marketing vidéo et communication à Caen (Normandie). Production vidéo, media buying, contenu IA & plan réel, identité de marque et automatisation."
         canonical={`${siteUrl}/`}
         ogType="website"
         jsonLd={localBusinessJsonLd}
@@ -88,10 +90,10 @@ const Index = () => {
         {showBelowFold ? (
           <>
             <Suspense fallback={<div className="min-h-[60vh]" aria-hidden="true" />}>
-              <Prestations />
+              <Prestations activeServiceId={activeServiceId} onServiceChange={setActiveServiceId} />
             </Suspense>
             <Suspense fallback={<div className="min-h-[60vh]" aria-hidden="true" />}>
-              <Process />
+              <Process activeServiceId={activeServiceId} />
             </Suspense>
             <Suspense fallback={<div className="min-h-[60vh]" aria-hidden="true" />}>
               <Contact />
