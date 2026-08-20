@@ -1,87 +1,19 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Video, Target, Palette, Share2, Globe, Camera, TabletSmartphone, FilePen, Euro} from "lucide-react";
+import { services, type Service } from "@/data/services";
 import { PrestationModal } from "./PrestationModal";
 
-const services = [
-  {
-    id: "video",
-    label: "Vidéos d'entreprise",
-    icon: Video,
-    stat: "150+",
-    statLabel: "VIDÉOS RÉALISÉES",
-    title: "CAPTER L'ATTENTION À TRAVERS LE CONTENU VIDÉO",
-    description: "La vidéo marketing est aujourd’hui le levier le plus puissant pour capter l’attention et générer de la conversion. Nous avons fait du contenu vidéo de qualité le pilier de notre stratégie digitale, car il performe sur toutes les plateformes et touche toutes les audiences. Grâce à des scripts vidéo optimisés, pensés pour convaincre, engager et convertir, nous transformons vos prospects en clients et renforçons durablement votre visibilité en ligne.",
-    features: [
-      { icon: Camera, label: "Matériel professionnel." },
-      { icon: TabletSmartphone, label: "Contenu adapté au support de communication." },
-      { icon: FilePen, label: "Écriture de script pensé pour la performance." },
-    ],
-  },
-  {
-    id: "ads",
-    label: "Campagne Meta Ads",
-    icon: Target,
-    stat: "50+",
-    statLabel: "CAMPAGNES LANCÉES",
-    title: "DES CAMPAGNES DE PUBLICITÉ QUI CONVERTISSENT",
-    description: "Imaginez, votre service, votre produit qui arrive directement dans le fil d'actualité Facebook, Instagram de votre client cible. L'objectif ? Attirer son attention, susciter son intérêt et le convertir en client fidèle. Grâce à des campagnes publicitaires Meta Ads stratégiquement conçues, nous maximisons votre retour sur investissement publicitaire en ciblant précisément les audiences les plus susceptibles de devenir vos clients.",
-    features: [
-      { icon: Target, label: "Ciblage Précis" },
-      { icon: Share2, label: "Multi-plateforme" },
-      { icon: Euro, label: "Retour sur investissement" },
-    ],
-  },
-  {
-    id: "identity",
-    label: "Identité visuelle",
-    icon: Palette,
-    stat: "200+",
-    statLabel: "IDENTITÉS VISUELLES CRÉÉES",
-    title: "UNE IDENTITÉ QUI COLLE À VOTRE IMAGE",
-    description: "Développez une identité visuelle forte, cohérente et mémorable, pensée pour traduire vos valeurs, affirmer votre positionnement et renforcer votre image de marque. Grâce à une direction artistique stratégique et un design soigné, vous vous démarquez durablement de la concurrence, captez l’attention de votre audience et installez une reconnaissance immédiate sur l’ensemble de vos supports de communication, digitaux comme print.",
-    features: [
-      { icon: Palette, label: "Logo Design" },
-      { icon: Globe, label: "Charte Graphique" },
-      { icon: Camera, label: "Direction Artistique" },
-    ],
-  },
-  {
-    id: "social",
-    label: "Social Media",
-    icon: Share2,
-    stat: "1M+",
-    statLabel: "IMPRESSIONS GÉNÉRÉES",
-    title: "ENGAGEZ VOTRE COMMUNAUTÉ",
-    description: "Créez une présence sociale forte et cohérente grâce à des contenus engageants et une stratégie de community management structurée. Nous développons votre visibilité sur les réseaux sociaux, renforçons la relation avec votre communauté et transformons vos plateformes sociales en véritables leviers de notoriété, d’engagement et de conversion.",
-    features: [
-      { icon: Share2, label: "Stratégie de communication" },
-      { icon: Camera, label: "Création de contenu" },
-      { icon: Target, label: "Community Mgmt" },
-    ],
-  },
-  {
-    id: "web",
-    label: "Site Web",
-    icon: Globe,
-    stat: "80+",
-    statLabel: "SITES LIVRÉS",
-    title: "VOTRE VITRINE DIGITALE",
-    description: "Concevez un site web moderne, performant et pensé pour la conversion, capable d’offrir une expérience utilisateur fluide et efficace. Nous créons des sites web optimisés pour le référencement naturel, conçus pour capter l’attention, valoriser votre activité et transformer vos visiteurs en clients grâce à une structure claire et des parcours utilisateurs maîtrisés.",
-    features: [
-      { icon: Globe, label: "Design UX/UI" },
-      { icon: TabletSmartphone, label: "Responsive" },
-      { icon: Target, label: "SEO Optimisé" },
-    ],
-  },
-];
+interface PrestationsProps {
+  activeServiceId: string;
+  onServiceChange: (id: string) => void;
+}
 
-export const Prestations = () => {
-  const [activeService, setActiveService] = useState(services[0]);
+export const Prestations = ({ activeServiceId, onServiceChange }: PrestationsProps) => {
+  const activeService = services.find((service) => service.id === activeServiceId) ?? services[0];
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedPrestation, setSelectedPrestation] = useState<typeof services[0] | null>(null);
+  const [selectedPrestation, setSelectedPrestation] = useState<Service | null>(null);
 
-  const handleOpenModal = (service: typeof services[0]) => {
+  const handleOpenModal = (service: Service) => {
     setSelectedPrestation(service);
     setIsModalOpen(true);
   };
@@ -126,7 +58,7 @@ export const Prestations = () => {
           {services.map((service) => (
             <button
               key={service.id}
-              onClick={() => setActiveService(service)}
+              onClick={() => onServiceChange(service.id)}
               className={`px-5 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
                 activeService.id === service.id
                   ? "bg-gradient-primary text-primary-foreground shadow-glow"
